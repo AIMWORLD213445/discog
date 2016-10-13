@@ -5,7 +5,9 @@ var displayReleases = function(releases) {
   for (var i = 0; i < releases.length; i++) {
     var title = releases[i].title;
     var discogsId = releases[i].id;
-    $('#showReleases').append('<li class="list-group-item">'+ title +' (' + discogsId + ')</li>');
+    var format = releases[i].format[0];
+    var country = releases[i].country;
+    $('#showReleases').append('<li class="list-group-item">'+ title + ' [' + format + '/' + country + '] <a href=\'#\' class=\'find-prices\'>' + discogsId + '</button></li>');
   }
 }
 
@@ -20,6 +22,12 @@ $(document).ready(function() {
     var title = $('#title').val();
     var barcode = $('#barcode').val();
     myDiscogs.getReleases(artist, track, title, barcode, displayReleases);
+  });
+
+  $('ul').on('click', 'a.find-prices', function() {
+    var discogsId = $(this).text();
+    console.log(discogsId);
+    myDiscogs.getPrices(discogsId);
   });
 
 });

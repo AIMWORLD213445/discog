@@ -18,13 +18,20 @@ Discogs.prototype.getReleases = function(artist, track, title, barcode, displayF
     queryArray.push('barcode=' + barcode);
   }
   var query = queryArray.join('&');
-  console.log(query);
-  $.get('https://api.discogs.com/database/search?' + query +'&token=' +  discogsToken).then(function(response) {
+  $.get('https://api.discogs.com/database/search?type=master&' + query +'&token=' +  discogsToken).then(function(response) {
     console.log(response.results);
     displayFunction(response.results);
   }).fail(function(error) {
-    console.log(error);
     $('.showReleases').text(error);
+  });
+}
+
+Discogs.prototype.getPrices = function(discogsId, displayFunction) {
+  $.get('https://api.discogs.com/marketplace/price_suggestions/' + discogsId + '?token=' +  discogsToken).then(function(response) {
+    console.log(response);
+    // displayFunction(response.results);
+  }).fail(function(error) {
+    $('.showPrices').text(error);
   });
 }
 

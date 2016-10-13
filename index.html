@@ -12,7 +12,7 @@
       <div class="jumbotron">
         <h1>Discogs Thrift Store Find Finder!</h1>
       </div>
-      <h2>Is This a Buried Treasure?</h2>
+      <h2 class="find-prices">Is This a Buried Treasure?</h2>
       <form id="find-releases">
         <div class="form-group">
           <input class="form-control" type="text" id="artist" placeholder="Artist">
@@ -23,10 +23,16 @@
         <button class="btn btn-default" type="submit">Show Me the Money!</button>
       </form>
       <hr>
-      <p>
-        <ul id="showReleases">
-        </ul>
-      </p>
+      <div class="row">
+        <div class="col-xs-6">
+          <ul class="list-group" id="showReleases">
+          </ul>
+        </div>
+        <div class="col-xs-6">
+          <ul class="list-group" id="showPrices">
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
